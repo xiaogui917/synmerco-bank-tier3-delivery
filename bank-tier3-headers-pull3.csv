@@ -2,14 +2,14 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 11578,Burke & Herbert Bank & Trust Company,www.burkeandherbertbank.com,https://www.burkeandherbertbank.com/,200,yes,,no,absent,no,none,,,0,0,0,,
 34697,WEX Bank,www.wexinc.com,https://www.wexinc.com/,200,yes,31536000,no,absent,no,none,,,0,0,0,,
 1281,Washington Trust Bank,www.watrust.com,https://www.watrust.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
-59108,Charles Schwab Trust Bank,,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+59108,Charles Schwab Trust Bank,,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
 12854,Centier Bank,www.centier.com,https://www.centier.com/,200,yes,31536000,yes,present,no,none,,,0,0,0,,
 14531,Amarillo National Bank,www.anb.com,https://www.anb.com/,200,yes,31536000,yes,present,yes,SAMEORIGIN,strict-origin-when-cross-origin,"geolocation=(self), hid=(self)",0,0,0,,
 258,Stock Yards Bank & Trust Company,www.syb.com,https://www.syb.com/,403,no,,no,absent,no,none,,,0,0,0,,
 22953,"Amerant Bank, National Association",www.amerantbank.com,https://www.amerantbank.com/,200,yes,31536000,yes,present,yes,'self',,,0,0,0,,
 19629,International Bank of Commerce,www.ibc.com,https://www.ibc.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 12614,Origin Bank,www.origin.bank,https://www.origin.bank/en/,200,yes,,no,present,no,'self' *.d1.lfi.dev.fiscloudservices.com d1.lfi.dev.fiscloudservices.com *.origin.online-banking-services.com origin.online-banking-services.com *.origin-bfx.online-banking-services.com origin-bfx.online-banking-services.com *.origin-spe.online-banking-services.com origin-spe.online-banking-services.com *.origin-cct.online-banking-services.com origin-cct.online-banking-services.com *.origin-az.online-banking-services.com origin-az.online-banking-services.com ibanking-services.com *.ibanking-services.com ondemand.eoriginal.com,,,0,0,0,,
-11124,S&T Bank,http://www.stbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+11124,S&T Bank,http://www.stbank.com,https://www.stbank.com/personal/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 21943,Tri Counties Bank,www.tcbk.com,https://www.tcbk.com/,200,yes,,no,absent,no,none,,,0,0,0,,
 20624,Byline Bank,www.bylinebank.com,https://www.bylinebank.com/,200,yes,31536000,yes,present,yes,'self',no-referrer-when-downgrade,"autoplay=(), camera=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), usb=(), browsing-topics=()",0,0,0,,
 34507,Principal Bank,www.principal.com/bank,https://www.principal.com/,200,yes,31622400,yes,report-only,yes,SAMEORIGIN,,,0,0,0,,
@@ -17,8 +17,8 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 34742,EagleBank,www.eaglebankcorp.com,https://www.eaglebankcorp.com/,200,no,31536000,yes,present,yes,'self',origin,"geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()",0,0,0,,
 26342,"RBC Bank, (Georgia) National Association",www.rbcbank.com,https://www.rbcbank.com/,200,yes,,no,absent,no,SAMEORIGIN,,,0,0,0,,
 33935,"Wintrust Bank, National Association",www.wintrustbank.com,https://www.wintrustbank.com/,200,yes,31557600,no,absent,yes,SAMEORIGIN,,,0,0,0,,
-6544,Peoples Bank,https://www.peoplesbancorp.com/,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-622,Amalgamated Bank,http://AMALGAMATEDBANK.COM,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+6544,Peoples Bank,https://www.peoplesbancorp.com/,https://www.peoplesbancorp.com/,200,yes,31536000,yes,report-only,yes,SAMEORIGIN,strict-origin-when-cross-origin,"camera=(), microphone=(), geolocation=()",0,0,0,,
+622,Amalgamated Bank,http://AMALGAMATEDBANK.COM,https://www.amalgamatedbank.com/,200,yes,15768000,no,present,yes,ALLOW-FROM *.twilio.com,strict-origin-when-cross-origin,,0,0,0,,
 17943,Liberty Bank,www.liberty-bank.com,https://www.liberty-bank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,strict-origin-when-cross-origin,"accelerometer=(self), ambient-light-sensor=(self), autoplay=(self), battery=(self), camera=(self), cross-origin-isolated=(self), display-capture=(self), document-domain=(self), encrypted-media=(self), execution-while-not-rendered=(self), execution-while-out-of-viewport=(self), fullscreen=(self), geolocation=(self), gyroscope=(self), keyboard-map=(self), magnetometer=(self), microphone=(self), midi=(self), navigation-override=(self), payment=(self), picture-in-picture=(self), publickey-credentials-get=(self), screen-wake-lock=(self), sync-xhr=(self), usb=(self), web-share=(self), xr-spatial-tracking=(self)",0,0,0,,
 9087,1st Source Bank,www.1stsource.com,https://www.1stsource.com/,200,yes,0,no,present,yes,'self',no-referrer-when-downgrade,"camera=(), microphone=(), payment=(), usb=(), bluetooth=()",0,0,0,,
 27589,"Lake Forest Bank & Trust Company, National Association",www.lakeforestbank.com,https://www.lakeforestbank.com/,200,yes,31557600,no,absent,yes,SAMEORIGIN,,,0,0,0,,
@@ -27,7 +27,7 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 35444,"The Bancorp Bank, National Association",www.thebancorp.com,https://www.thebancorp.com/,200,yes,31536000,no,present,yes,'self' https://*.thebancorp.com https://thebancorp.sharepoint.com,,,0,0,0,,
 10634,Pinnacle Bank,www.pinnbank.com,https://www.pinnbank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,geolocation=(self),0,0,0,,
 3705,"First Mid Bank & Trust, National Association",www.firstmid.com,https://www.firstmid.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
-34519,Merrick Bank,http://www.merrickbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+34519,Merrick Bank,http://www.merrickbank.com,https://www.merrickbank.com/,200,no,31536000,no,absent,yes,none,,,0,0,0,,
 32526,"American Savings Bank, National Association",www.asbhawaii.com,https://www.asbhawaii.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 23220,Woodforest National Bank,www.woodforest.com,https://www.woodforest.com/,200,yes,31536000,yes,present,yes,'self',strict-origin-when-cross-origin,"camera=(), microphone=(), payment=()",0,0,0,,
 58228,b1BANK,www.b1bank.com,https://www.b1bank.com/,403,no,,no,absent,no,none,,,0,0,0,,
@@ -43,9 +43,9 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 17393,German American Bank,www.germanamerican.com,https://germanamerican.com/,200,yes,63072000,yes,absent,yes,SAMEORIGIN,,,0,0,0,,
 29012,Heritage Bank,www.heritagebanknw.com,https://www.heritagebanknw.com/home/home,200,yes,31536000,no,present,no,https://www.ap-ncr.com www.heritagebanknw.com,,,0,0,0,,
 13876,CNB Bank,www.cnbbank.bank,https://www.cnbbank.bank/,200,yes,31536000,yes,present,yes,"SAMEORIGIN, SAMEORIGIN","strict-origin-when-cross-origin, no-referrer-when-downgrade","autoplay=(self), document-domain=*, fullscreen=*, geolocation=(self), microphone=(self)",0,0,0,,
-5903,BankPlus,http://www.bankplus.net,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-57903,Poppy Bank,http://www.poppy.bank,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-7759,Univest  Bank and Trust Co.,http://www.univest.net,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+5903,BankPlus,http://www.bankplus.net,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
+57903,Poppy Bank,http://www.poppy.bank,https://www.poppy.bank/,200,yes,31536000,yes,present,yes,"sameorigin, SAMEORIGIN","origin-when-cross-origin, strict-origin-when-cross-origin",,0,0,0,,
+7759,Univest  Bank and Trust Co.,http://www.univest.net,https://www.univest.net/,200,yes,63072000,no,present,yes,'self',strict-origin-when-cross-origin,unload=*,0,0,0,,
 11035,Peapack Private Bank & Trust,www.peapackprivate.com,https://www.peapackprivate.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 24170,Hanmi Bank,www.hanmi.com,https://www.hanmi.com/,200,yes,300,no,absent,no,none,,"private-state-token-redemption=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com""), private-state-token-issuance=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com"")",0,0,0,,
 953,Bankers Trust Company,www.bankerstrust.com,https://www.bankerstrust.com/,403,no,,no,absent,no,SAMEORIGIN,same-origin,,1,0,0,,
@@ -60,10 +60,10 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 34953,Northpointe Bank,www.northpointe.com,https://www.northpointe.com/,200,yes,63072000,no,absent,no,none,,,1,0,0,,
 17308,Central Pacific Bank,WWW.CPB.BANK,https://www.cpb.bank/,200,yes,2592000,yes,present,yes,'self',,,0,0,0,,
 26483,Needham Bank,www.needhambank.com,https://www.needhambank.com/,403,no,,no,present,yes,SAMEORIGIN,origin-when-cross-origin,,0,0,0,,
-33648,Bank of India,,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+33648,Bank of India,,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
 23498,"TBK BANK, SSB",www.tbkbank.com,https://www.tbkbank.com/,200,yes,31536000,no,absent,no,none,,,0,0,0,,
-33661,"Mizrahi Tefahot Bank, Ltd.",,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-30776,"Pathward, National Association",http://www.pathward.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+33661,"Mizrahi Tefahot Bank, Ltd.",,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
+30776,"Pathward, National Association",http://www.pathward.com,https://www.pathward.com/,200,yes,31536000,yes,present,yes,'self' pathward.com *.pathward.com,strict-origin-when-cross-origin,"accelerometer=(), battery=(), bluetooth=(), camera=(), display-capture=(), gamepad=(),gyroscope=(), magnetometer=(), microphone=(), midi=(),picture-in-picture=(),serial=(),speaker-selection=(),usb=(),xr-spatial-tracking=()",0,0,0,,
 13102,Lake City Bank,www.lakecitybank.com,https://www.lakecitybank.com/,200,yes,31536000,yes,present,yes,SAMEORIGIN,,,0,0,0,,
 6540,The Farmers National Bank of Canfield,www.farmersbankgroup.com,https://farmersbankgroup.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,,,0,0,0,,
 20296,Johnson Bank,www.johnsonfinancialgroup.com,https://www.johnsonfinancialgroup.com/,200,yes,,no,present,no,none,,,0,0,0,,
