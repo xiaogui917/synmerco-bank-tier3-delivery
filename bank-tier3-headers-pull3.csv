@@ -27,23 +27,23 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 35444,"The Bancorp Bank, National Association",www.thebancorp.com,https://www.thebancorp.com/,200,yes,31536000,no,present,yes,'self' https://*.thebancorp.com https://thebancorp.sharepoint.com,,,0,0,0,,
 10634,Pinnacle Bank,www.pinnbank.com,https://www.pinnbank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,geolocation=(self),0,0,0,,
 3705,"First Mid Bank & Trust, National Association",www.firstmid.com,https://www.firstmid.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
-34519,Merrick Bank,http://www.merrickbank.com,https://www.merrickbank.com/,200,no,31536000,no,absent,yes,none,,,0,0,0,,
+34519,Merrick Bank,http://www.merrickbank.com,https://www.merrickbank.com/,200,no response,31536000,no,absent,yes,none,,,0,0,0,,
 32526,"American Savings Bank, National Association",www.asbhawaii.com,https://www.asbhawaii.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 23220,Woodforest National Bank,www.woodforest.com,https://www.woodforest.com/,200,yes,31536000,yes,present,yes,'self',strict-origin-when-cross-origin,"camera=(), microphone=(), payment=()",0,0,0,,
 58228,b1BANK,www.b1bank.com,https://www.b1bank.com/,403,no,,no,absent,no,none,,,0,0,0,,
-34699,Metropolitan Commercial Bank,www.mcbankny.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-23296,Salem Five Cents Savings Bank,http://www.salemfive.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+34699,Metropolitan Commercial Bank,www.mcbankny.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+23296,Salem Five Cents Savings Bank,http://www.salemfive.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 609,Tompkins Bank & Trust,www.tompkinsbank.com,https://www.tompkinsbank.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 27389,Wells Fargo National Bank West,www.wellsfargo.com,https://www.wellsfargo.com/,200,yes,31536000,no,present,yes,'self' *.wellsfargo.com,,,1,0,0,,
 18297,Southside Bank,www.southside.com,https://www.southside.com/,200,yes,300,yes,present,yes,*.southside.com *.adp.com,,,0,0,0,,
-3657,First American Bank,www.firstambank.com,,no response,yes,,no,absent,no,none,,,0,0,0,,
+3657,First American Bank,www.firstambank.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,,
 5633,First Security Bank,www.fsbank.com,https://www.fsbank.com/,200,yes,,no,absent,no,SAMEORIGIN,,,0,0,0,,
-58410,Cross River Bank,http://www.crossriverbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+58410,Cross River Bank,http://www.crossriverbank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 57614,Forbright Bank,WWW.FORBRIGHTBANK.COM,https://www.forbrightbank.com/,200,yes,63072000,no,present,no,'self' https://*.vimeo.com https://*.duosecurity.com https://*.youtube.com https://*.timevaluecalculators.com https://*.eoriginal.com,,,0,0,0,,
 17393,German American Bank,www.germanamerican.com,https://germanamerican.com/,200,yes,63072000,yes,absent,yes,SAMEORIGIN,,,0,0,0,,
 29012,Heritage Bank,www.heritagebanknw.com,https://www.heritagebanknw.com/home/home,200,yes,31536000,no,present,no,https://www.ap-ncr.com www.heritagebanknw.com,,,0,0,0,,
 13876,CNB Bank,www.cnbbank.bank,https://www.cnbbank.bank/,200,yes,31536000,yes,present,yes,"SAMEORIGIN, SAMEORIGIN","strict-origin-when-cross-origin, no-referrer-when-downgrade","autoplay=(self), document-domain=*, fullscreen=*, geolocation=(self), microphone=(self)",0,0,0,,
-5903,BankPlus,http://www.bankplus.net,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
+5903,BankPlus,http://www.bankplus.net,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 57903,Poppy Bank,http://www.poppy.bank,https://www.poppy.bank/,200,yes,31536000,yes,present,yes,"sameorigin, SAMEORIGIN","origin-when-cross-origin, strict-origin-when-cross-origin",,0,0,0,,
 7759,Univest  Bank and Trust Co.,http://www.univest.net,https://www.univest.net/,200,yes,63072000,no,present,yes,'self',strict-origin-when-cross-origin,unload=*,0,0,0,,
 11035,Peapack Private Bank & Trust,www.peapackprivate.com,https://www.peapackprivate.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
