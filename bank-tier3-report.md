@@ -6,7 +6,7 @@ Seller agent: xiaozhi-ops (wallet DID did:pkh:eip155:8453:0x93Be7f04DE2FD79379F9
 
 | Pull | Window (UTC) | Rows | SHA-256 | Bytes | 200 / 403 / no response / no WEBADDR | https redirect yes |
 |---|---|---|---|---|---|---|
-| PULL 1 | 2026-11-14T13:38:39Z to 2026-11-14T13:56:16Z (incl. one retry of failed chains) | 75 | 5fcc545321cff233093c24066e82fcee6bcde5d45edd0dafbe4d47dfc8658ca4 | 13845 | 45 / 16 / 11 / 3 | 55 |
+| PULL 1 | 2026-11-14T13:35:01Z to 2026-11-14T13:56:16Z (incl. one retry of failed chains) | 75 | 5fcc545321cff233093c24066e82fcee6bcde5d45edd0dafbe4d47dfc8658ca4 | 13845 | 45 / 16 / 11 / 3 | 55 |
 | PULL 2 | 2026-11-15T15:24:31Z to 2026-11-15T18:24:52Z | 75 | a0800bb7de2772ab19f64fa33c5b932f6cc2ce32bf37cf3a72574925864c924b | 12931 | 48 / 6 / 18 / 3 | 52 |
 | PULL 3 | 2026-11-16T18:38:02Z to 2026-11-16T18:39:59Z | 75 | c4eb07b34363e5268f4a13a6c638ce65eae8917db8cfafbba4b5f870195c6541 | 12461 | 55 / 5 / 15 / 3 | 55 |
 
@@ -120,7 +120,7 @@ Bank sites: only the root path, /.well-known/security.txt, and the redirects the
 | 224 | 3603 | Old Second National Bank | www.oldsecond.com | 6861243 |
 | 225 | 17438 | First National Bank of America | www.fnba.com | 6818824 |
 
-Three banks have no WEBADDR in FDIC (CERT 59108, 34066, 18409 — check the table): their cells read "no WEBADDR" per the TASK. Rank 151 ASSET 10,984,290; rank 225 ASSET 6,818,824.
+Three banks have no WEBADDR in FDIC (CERT 59108, 33648, 33661 — check the table): in PULL 1 their cells read "no WEBADDR" per the TASK; in PULL 2 and PULL 3 the same banks' status cells read "no response" (see Notes and limits). Rank 151 ASSET 10,984,290; rank 225 ASSET 6,818,824.
 
 ## BANK x CONTROL TABLE (PULL 3 — the CSV the counts use)
 
@@ -217,6 +217,8 @@ Y = present/observed as required, N = missing, - = not observed for that control
 | permissions policy | 43 | 55 | 11578, 34697, 1281, 12854, 22953, 19629, 12614, 21943, 34507, 26342, 33935, 27589, 13421, 26312, 35444, 3705, 32526, 609, 27389, 18297, 5633, 57614, 17393, 29012, 11035, 16191, 18408, 33539, 25858, 28765, 24156, 16026, 34953, 17308, 23498, 13102, 6540, 20296, 23627, 9889, 2720, 3603, 17438 |
 | cookie flags | 0 | 55 | - |
 | security.txt | 64 | 64 | 11578, 34697, 1281, 59108, 12854, 14531, 258, 22953, 19629, 12614, 21943, 20624, 34507, 27981, 34742, 26342, 33935, 17943, 9087, 27589, 13421, 26312, 35444, 10634, 3705, 32526, 23220, 58228, 609, 27389, 18297, 3657, 5633, 57614, 17393, 29012, 13876, 11035, 24170, 953, 16191, 18408, 33539, 25858, 28765, 24156, 16980, 16026, 34953, 17308, 26483, 33648, 23498, 33661, 13102, 6540, 20296, 23627, 9889, 17870, 2720, 4255, 3603, 17438 |
+
+Strict reading: the three banks with no WEBADDR (CERT 59108, 33648, 33661) had no URL to fetch, so strictly they were not observed for any control, rather than observed-and-missing. On that reading https redirect is missing in 6 of 61 observed banks and security.txt in 61 of 61 observed banks. The counts in the table above are the raw counts, which agree with the PULL 3 CSV (the pull script filed redirect "no" and security.txt contact "no response" for those three banks). The banks-missing-four list below is unaffected — those three banks are not in it either way.
 
 ### Banks missing four or more controls (PULL 3): 34 banks
 
