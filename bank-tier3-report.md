@@ -15,10 +15,87 @@ Platform record: PULL 1 note 2026-11-14T14:28:41Z, PULL 2 note 2026-11-15T18:32:
 ## ACCEPTANCE (job checklist, each line checkable from this file plus the attached CSVs)
 
 1. The 75 banks that follow the 150 largest by ASSET in FDIC BankFind as of pull 1, with ranks, backed by the raw FDIC JSON rows for all 75 banks — see SOURCES and PANEL below (re-check 2026-11-16 confirms the same FDIC index snapshot still lists exactly these 75 CERTs at ranks 151-225).
+Proof:
+~~~text
+FDIC query (no key): filters=ACTIVE:1, fields=NAME,WEBADDR,ASSET,CERT, sort_by=ASSET, sort_order=DESC, limit=100, offset=150, format=json.
+Re-check: 2026-11-16T18:44Z; snapshot index institutions_20261113100007; total 4208 active institutions.
+Ranks 151-153:
+{"data": {"WEBADDR": "www.burkeandherbertbank.com", "ASSET": 10984290, "CERT": 11578, "NAME": "Burke & Herbert Bank & Trust Company", "ID": "11578"}, "score": 0}
+{"data": {"WEBADDR": "www.wexinc.com", "ASSET": 10708586, "CERT": 34697, "NAME": "WEX Bank", "ID": "34697"}, "score": 0}
+{"data": {"WEBADDR": "www.watrust.com", "ASSET": 10536386, "CERT": 1281, "NAME": "Washington Trust Bank", "ID": "1281"}, "score": 0}
+Ranks 223-225:
+{"data": {"WEBADDR": "www.camdennational.bank", "ASSET": 6940603, "CERT": 4255, "NAME": "The Camden National Bank", "ID": "4255"}, "score": 0}
+{"data": {"WEBADDR": "www.oldsecond.com", "ASSET": 6861243, "CERT": 3603, "NAME": "Old Second National Bank", "ID": "3603"}, "score": 0}
+{"data": {"WEBADDR": "www.fnba.com", "ASSET": 6818824, "CERT": 17438, "NAME": "First National Bank of America", "ID": "17438"}, "score": 0}
+All 75 rows in SOURCES match the pull-1 panel field by field (CERT, NAME, WEBADDR, ASSET).
+~~~
 2. The three CSV files are attached as data files with exactly the listed columns, one row per bank — see synmerco-data block at the end (all three verified by the platform data worker).
+Proof:
+~~~text
+Columns (18): CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,nosniff,frame protection,referrer policy,permissions policy,cookies,no secure,no httponly,security.txt contact,security.txt expires
+```synmerco-data
+5fcc545321cff233093c24066e82fcee6bcde5d45edd0dafbe4d47dfc8658ca4 bank-tier3-headers-pull1.csv
+a0800bb7de2772ab19f64fa33c5b932f6cc2ce32bf37cf3a72574925864c924b bank-tier3-headers-pull2.csv
+a364b94722bd039adcb36dda580fd3eb30b80d04f738bf76206f4e76a6dc8fd7 bank-tier3-headers-pull3.csv
+```
+CSV rows: PULL 1 75 / PULL 2 75 / PULL 3 75.
+All three data files were declared and verified by the platform data worker.
+~~~
 3. Counts' CSV (PULL 3): the nine full-PROOF banks match in every cell; every other bank's URL, status, hsts, cookie, security.txt and presence cells match its PROOF PULL 3 line; failures show the error — see BANK x CONTROL TABLE, COUNTS and PROOF PULL 3.
+Proof:
+~~~text
+BANK x CONTROL TABLE rows (verbatim):
+| CERT | redir | hsts | csp | nosniff | frame | refpol | permspol | cookie | sectxt | missing |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 258 | N | - | - | - | - | - | - | - | N | 2 |
+| 609 | Y | Y | N | Y | Y | N | N | Y | N | 4 |
+| 622 | Y | Y | Y | Y | Y | Y | N | Y | N | 2 |
+| 953 | N | - | - | - | - | - | - | - | N | 2 |
+| 1281 | Y | Y | N | Y | Y | N | N | Y | N | 4 |
+| 11578 | Y | N | N | N | N | N | N | Y | N | 7 |
+| 12854 | Y | Y | Y | N | N | N | N | Y | N | 5 |
+| 19629 | Y | Y | N | Y | Y | N | N | Y | N | 4 |
+| 34697 | Y | Y | N | N | N | N | N | Y | N | 6 |
+Problem banks (CSV key cells; matching PROOF PULL 3 hops):
+34699 CSV status="no response"; https redirect="no response"; final url="no response"; csp="no response"; security.txt contact="no response" | PROOF http ERR(ProxyError), https ERR(ProxyError), sec ERR(ProxyError)
+23296 CSV status="no response"; https redirect="no response"; final url="no response"; csp="no response"; security.txt contact="no response" | PROOF http 301 then ERR(ReadTimeout), https ERR(ReadTimeout), sec ERR(ReadTimeout)
+3657 CSV status="no response"; https redirect="yes"; final url="no response"; csp="no response"; security.txt contact="" | PROOF http 301 then 403, https ERR(ChunkedEncodingError), sec 404
+58410 CSV status="no response"; https redirect="no response"; final url="no response"; csp="no response"; security.txt contact="no response" | PROOF http 301 then 301 then ERR(ReadTimeout), https 301 then ERR(ReadTimeout), sec 301 then ERR(ReadTimeout)
+5903 CSV status="no response"; https redirect="yes"; final url="no response"; csp="no response"; security.txt contact="no response" | PROOF http 307 then 200, https ERR(ReadTimeout), sec ERR(ReadTimeout)
+34519 CSV status="200"; https redirect="no response"; final url="https://www.merrickbank.com/"; csp="absent"; security.txt contact="" | PROOF http ERR(ProxyError), https 200, sec 404
+All 75 PULL 3 CSV rows were rebuilt cell-by-cell from pull3_proof.json and the BANK x CONTROL TABLE was derived from the same CSV.
+~~~
 4. The control counts and the banks-missing-four list follow the TASK and agree with the PULL 3 CSV — see COUNTS (PULL 3).
+Proof:
+~~~text
+COUNTS excerpt (PULL 3):
+| Control | Missing | Observed |
+|---|---|---|
+| https redirect | 6 | 68 |
+| hsts | 8 | 62 |
+| csp | 30 | 62 |
+| nosniff | 19 | 62 |
+| frame protection | 14 | 62 |
+| referrer policy | 44 | 62 |
+| permissions policy | 47 | 62 |
+| cookie flags | 0 | 62 |
+| security.txt | 68 | 68 |
+Missing-4+ (36): 11578:7, 34697:6, 1281:4, 12854:5, 19629:4, 12614:5, 11124:4, 21943:7, 34507:4, 26342:6, 33935:4, 27589:4, 13421:4, 26312:4, 3705:4, 34519:5, 32526:4, 609:4, 5633:6, 57614:4, 17393:4, 29012:4, 11035:4, 24170:5, 18408:4, 33539:4, 25858:7, 24156:4, 16026:4, 34953:6, 23498:6, 20296:6, 23627:6, 2720:4, 3603:6, 17438:6
+Counts recomputed from the PULL 3 CSV independently; PULL 1 had 17 banks missing four or more, PULL 2 had 25.
+~~~
 5. The PLATFORM RECORD shows a PULL 1 note and each later PULL note at least its wait after the one before, each with its CSV's row count and SHA-256; each pull's source time (HTTP Date of its first request) is later than the previous pull's; the change counts agree with the CSV files — see Pull windows and files above and CHANGES sections below (new 0 / gone 0 in both comparisons; row counts 75 = 75 + 0 - 0).
+Proof:
+~~~text
+| Pull | Window (UTC) | Rows | SHA-256 | Bytes | 200 / 403 / no response / no WEBADDR | https redirect yes |
+|---|---|---|---|---|---|---|
+| PULL 1 | 2026-11-14T13:35:01Z to 2026-11-14T13:56:16Z (incl. one retry of failed chains) | 75 | 5fcc545321cff233093c24066e82fcee6bcde5d45edd0dafbe4d47dfc8658ca4 | 13845 | 45 / 16 / 11 / 3 | 55 |
+| PULL 2 | 2026-11-15T15:24:31Z to 2026-11-15T18:24:52Z | 75 | a0800bb7de2772ab19f64fa33c5b932f6cc2ce32bf37cf3a72574925864c924b | 12931 | 48 / 6 / 18 / 3 | 52 |
+| PULL 3 | 2026-11-16T18:38:02Z to 2026-11-16T18:39:59Z (10 banks re-pulled 2026-11-16T20:24:10Z to correct a request-construction fault) | 75 | a364b94722bd039adcb36dda580fd3eb30b80d04f738bf76206f4e76a6dc8fd7 | 13918 | 62 / 5 / 5 / 3 | 62 |
+Platform record: PULL 1 note 2026-11-14T14:28:41Z, PULL 2 note 2026-11-15T18:32:08Z, PULL 3 note 2026-11-16T22:40:53Z (server times; each later note at least 24 hours after the previous: PULL 2 - PULL 1 = 28h03m, PULL 3 - PULL 2 = 28h08m).
+First-request Date headers: PULL 1 Sat, 14 Nov 2026 13:35:08 GMT; PULL 2 Sun, 15 Nov 2026 15:24:37 GMT; PULL 3 Mon, 16 Nov 2026 18:38:07 GMT.
+2v1: new 0, gone 0, changed 337; rows 75 = 75 + 0 - 0.
+3v2: new 0, gone 0, changed 239; rows 75 = 75 + 0 - 0.
+~~~
 
 ## SOURCES
 
@@ -662,211 +739,106 @@ One line per bank (CERT | http chain | https chain | https-status | https-header
 ## FULL HEADERS (PULL 3) — first five by CERT and first five missing four or more
 
 First five by CERT: 258, 609, 622, 953, 1281. First five missing four or more: 11578, 34697, 1281, 12854, 19629. Union (9 banks; CERT 1281 is in both sets). Cookie values elided. security.txt text is shown where a 200 was returned; all nine returned 404/403 or no response except as noted — no bank in this set served a security.txt with a Contact line.
+Only the headers the control cells record are shown; long policy values are truncated, presence is what the cells encode.
 
 ### CERT 258 — Stock Yards Bank & Trust Company (final URL: https://www.syb.com/, status 403)
-
-```http
-Server: awselb/2.0
 Date: Mon, 16 Nov 2026 18:38:11 GMT
-Content-Type: text/html
-Content-Length: 118
-```
-
-security.txt: HTTP 403 (no Contact line served).
+strict-transport-security: (absent)
+content-security-policy: (absent)
+x-content-type-options: (absent)
+x-frame-options: (absent)
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 403, no Contact line served
 
 ### CERT 609 — Tompkins Bank & Trust (final URL: https://www.tompkinsbank.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:55 GMT
-Content-Type: text/html; charset=utf-8
-CF-RAY: a5b89d892c07066b-EWR
-cf-cache-status: DYNAMIC
-Server: cloudflare
-vary: Accept-Encoding
-expires: Mon, 16 Nov 2026 18:38:55 GMT
-Set-Cookie: <elided>
-Cache-Control: public, max-age=0
-x-frame-options: SAMEORIGIN
-Content-Encoding: gzip
-x-xss-protection: 1; mode=block
-x-ad-insert-result: success - index
-x-content-type-options: nosniff
 strict-transport-security: max-age=31536000
-x-varnish-ttl: 0.000
-x-varnish: 66617741
-Age: 0
-x-varnish-hitmiss: MISS
-x-varnish-count: 0
-via: varnish
-Accept-Ranges: bytes
-Content-Length: 22544
-```
-
-security.txt: HTTP 404 (no Contact line served).
+content-security-policy: (absent)
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 1 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 622 — Amalgamated Bank (final URL: https://www.amalgamatedbank.com/, status 200)
-
-```http
-Content-Type: text/html; charset=UTF-8
-X-Drupal-Dynamic-Cache: MISS
-Content-Language: en
-X-Content-Type-Options: nosniff
-X-Frame-Options: ALLOW-FROM *.twilio.com
-X-Generator: Drupal 10 (https://www.drupal.org)
-Content-Security-Policy: default-src 'self'; script-src 'self' blob *.amalgamatedbank.com  *.go-mpulse.net bam.nr-data.net unpkg.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com js.locatorsearch.com *.prod.acquia-sites.com *.instagram.com *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com *.googletagmanager.com *.doubleclick.net *.addtoany.com fonts.gstatic.com *.omappapi.com *.google-analytics.com cdn.jsdelivr.net cdnjs.cloudflare.com app.jazz.co js-agent.newrelic.com *.google.com *.gstatic.com www.recaptcha.net ajax.googleapis.com bam.nr-data.net 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com 'unsafe-eval' http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js https://www.recaptcha.net/recaptcha/api.js https://www.recaptcha.net/recaptcha/api/fallback *.cookielaw.org *.stackadapt.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com https://tags.srv.stackadapt.com https://srv.stackadapt.com https://east.srv.stackadapt.com https://uw.srv.stackadapt.com https://eu.srv.stackadapt.com https://qvdt3feo.com/ *.conforma.app *.onlineaccess1.com; style-src 'self' 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com unpkg.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com fonts.gstatic.com cdn.jsdelivr.net cdnjs.cloudflare.com *.google.com *.gstatic.com app.jazz.co https://tags.srv.stackadapt.com; img-src 'self' *.visualwebsiteoptimizer.com app.vwo.com useruploads.vwo.io amalgamatedbank.com www.amalgamatedbank.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net cdn.jsdelivr.net *.prod.acquia-sites.com js.locatorsearch.com *.oktacdn.com *.okta.com *.oktapreview.com data: *.googletagmanager.com app.jazz.co *.google.com *.google-analytics.com *.gstatic.com images.printable.com images.locatorsearch.com instagram.com i.ytimg.com d21y75miwcfqoq.cloudfront.net *.cookielaw.org https://tags.srv.stackadapt.com *.conforma.app; media-src files.marcomcentral.app.pti.com *.youtube.com *.amalgamatedbank.com bam.nr-data.net *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.conforma.app; frame-src *; child-src blob: *.amalgamatedbank.com; font-src 'self' cdnjs.cloudflare.com bam.nr-data.net *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com unpkg.com fonts.gstatic.com app.jazz.co *.google.com *.gstatic.com *.locatorsearch.com; connect-src 'self' *.visualwebsiteoptimizer.com app.vwo.com  *.go-mpulse.net abnyunityuat.fisglobal.com login-uat.fisglobal.com mcs.us1.twilio.com wss://tsock.us1.twilio.com *.talkdeskapp.com *.talkdeskdev.com maps-api-ssl.google.com bam.nr-data.net stats.addtoany.com googleads.g.doubleclick.net *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com *.omappapi.com *.google-analytics.com *.google.com *.gstatic.com googleads.g.doubleclick.net *.cookielaw.org *.onetrust.com *.akstat.io https://tags.srv.stackadapt.com *.googletagmanager.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com *.conforma.app; report-uri /report-csp-violation
-X-Content-Security-Policy: default-src 'self'; script-src 'self' blob *.amalgamatedbank.com  *.go-mpulse.net bam.nr-data.net unpkg.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com js.locatorsearch.com *.prod.acquia-sites.com *.instagram.com *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com *.googletagmanager.com *.doubleclick.net *.addtoany.com fonts.gstatic.com *.omappapi.com *.google-analytics.com cdn.jsdelivr.net cdnjs.cloudflare.com app.jazz.co js-agent.newrelic.com *.google.com *.gstatic.com www.recaptcha.net ajax.googleapis.com bam.nr-data.net 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com 'unsafe-eval' http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js https://www.recaptcha.net/recaptcha/api.js https://www.recaptcha.net/recaptcha/api/fallback *.cookielaw.org *.stackadapt.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com https://tags.srv.stackadapt.com https://srv.stackadapt.com https://east.srv.stackadapt.com https://uw.srv.stackadapt.com https://eu.srv.stackadapt.com https://qvdt3feo.com/ *.conforma.app *.onlineaccess1.com; style-src 'self' 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com unpkg.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com fonts.gstatic.com cdn.jsdelivr.net cdnjs.cloudflare.com *.google.com *.gstatic.com app.jazz.co https://tags.srv.stackadapt.com; img-src 'self' *.visualwebsiteoptimizer.com app.vwo.com useruploads.vwo.io amalgamatedbank.com www.amalgamatedbank.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net cdn.jsdelivr.net *.prod.acquia-sites.com js.locatorsearch.com *.oktacdn.com *.okta.com *.oktapreview.com data: *.googletagmanager.com app.jazz.co *.google.com *.google-analytics.com *.gstatic.com images.printable.com images.locatorsearch.com instagram.com i.ytimg.com d21y75miwcfqoq.cloudfront.net *.cookielaw.org https://tags.srv.stackadapt.com *.conforma.app; media-src files.marcomcentral.app.pti.com *.youtube.com *.amalgamatedbank.com bam.nr-data.net *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.conforma.app; frame-src *; child-src blob: *.amalgamatedbank.com; font-src 'self' cdnjs.cloudflare.com bam.nr-data.net *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com unpkg.com fonts.gstatic.com app.jazz.co *.google.com *.gstatic.com *.locatorsearch.com; connect-src 'self' *.visualwebsiteoptimizer.com app.vwo.com  *.go-mpulse.net abnyunityuat.fisglobal.com login-uat.fisglobal.com mcs.us1.twilio.com wss://tsock.us1.twilio.com *.talkdeskapp.com *.talkdeskdev.com maps-api-ssl.google.com bam.nr-data.net stats.addtoany.com googleads.g.doubleclick.net *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com *.omappapi.com *.google-analytics.com *.google.com *.gstatic.com googleads.g.doubleclick.net *.cookielaw.org *.onetrust.com *.akstat.io https://tags.srv.stackadapt.com *.googletagmanager.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com *.conforma.app; report-uri /report-csp-violation
-X-WebKit-CSP: default-src 'self'; script-src 'self' blob *.amalgamatedbank.com  *.go-mpulse.net bam.nr-data.net unpkg.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com js.locatorsearch.com *.prod.acquia-sites.com *.instagram.com *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com *.googletagmanager.com *.doubleclick.net *.addtoany.com fonts.gstatic.com *.omappapi.com *.google-analytics.com cdn.jsdelivr.net cdnjs.cloudflare.com app.jazz.co js-agent.newrelic.com *.google.com *.gstatic.com www.recaptcha.net ajax.googleapis.com bam.nr-data.net 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com 'unsafe-eval' http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js https://www.recaptcha.net/recaptcha/api.js https://www.recaptcha.net/recaptcha/api/fallback *.cookielaw.org *.stackadapt.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com https://tags.srv.stackadapt.com https://srv.stackadapt.com https://east.srv.stackadapt.com https://uw.srv.stackadapt.com https://eu.srv.stackadapt.com https://qvdt3feo.com/ *.conforma.app *.onlineaccess1.com; style-src 'self' 'unsafe-inline' *.visualwebsiteoptimizer.com app.vwo.com unpkg.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com fonts.googleapis.com fonts.gstatic.com cdn.jsdelivr.net cdnjs.cloudflare.com *.google.com *.gstatic.com app.jazz.co https://tags.srv.stackadapt.com; img-src 'self' *.visualwebsiteoptimizer.com app.vwo.com useruploads.vwo.io amalgamatedbank.com www.amalgamatedbank.com *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com bam.nr-data.net cdn.jsdelivr.net *.prod.acquia-sites.com js.locatorsearch.com *.oktacdn.com *.okta.com *.oktapreview.com data: *.googletagmanager.com app.jazz.co *.google.com *.google-analytics.com *.gstatic.com images.printable.com images.locatorsearch.com instagram.com i.ytimg.com d21y75miwcfqoq.cloudfront.net *.cookielaw.org https://tags.srv.stackadapt.com *.conforma.app; media-src files.marcomcentral.app.pti.com *.youtube.com *.amalgamatedbank.com bam.nr-data.net *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.conforma.app; frame-src *; child-src blob: *.amalgamatedbank.com; font-src 'self' cdnjs.cloudflare.com bam.nr-data.net *.amalgamatedbank.com *.talkdeskapp.com *.talkdeskdev.com *.twilio.com *.prod.acquia-sites.com *.oktacdn.com *.okta.com *.oktapreview.com unpkg.com fonts.gstatic.com app.jazz.co *.google.com *.gstatic.com *.locatorsearch.com; connect-src 'self' *.visualwebsiteoptimizer.com app.vwo.com  *.go-mpulse.net abnyunityuat.fisglobal.com login-uat.fisglobal.com mcs.us1.twilio.com wss://tsock.us1.twilio.com *.talkdeskapp.com *.talkdeskdev.com maps-api-ssl.google.com bam.nr-data.net stats.addtoany.com googleads.g.doubleclick.net *.youtube.com *.oktacdn.com *.okta.com *.oktapreview.com *.omappapi.com *.google-analytics.com *.google.com *.gstatic.com googleads.g.doubleclick.net *.cookielaw.org *.onetrust.com *.akstat.io https://tags.srv.stackadapt.com *.googletagmanager.com *.linkedin.com snap.licdn.com *.facebook.net *.facebook.com *.conforma.app; report-uri /report-csp-violation
-X-XSS-Protection: 1
-Referrer-Policy: strict-origin-when-cross-origin
-Feature-Policy: camera 'none'; microphone 'none'; midi *;
-X-Drupal-Cache: MISS
-Last-Modified: Mon, 16 Nov 2026 14:22:11 GMT
-ETag: "1794838931-gzip"
-X-Request-ID: v-1d0c8ec2-e1c9-11f1-ab21-4b72eaf713bb
-X-AH-Environment: prod
-X-Cache-Hits: 912
-X-Age: 21417
-Accept-Ranges: bytes
-X-Akamai-Transformed: 9 - 0 pmb=mRUM,1
-Content-Encoding: gzip
-Cache-Control: public, max-age=60
-Expires: Mon, 16 Nov 2026 20:20:11 GMT
 Date: Mon, 16 Nov 2026 20:19:11 GMT
-Strict-Transport-Security: max-age=15768000
-Server-Timing: cdn-cache; desc=HIT, edge; dur=1, ak_p; desc="1794860351334_388046424_792314929_107_5782_18_0_-";dur=1
-Vary: Accept-Encoding
-Content-Length: 25775
-```
-
-security.txt: HTTP 404 (no Contact line served).
+strict-transport-security: max-age=15768000
+content-security-policy: default-src 'self'; script-src 'self' blob *.amalgamatedbank.com  *.go-mpulse.net bam.nr-data.net un ... [truncated]
+x-content-type-options: nosniff
+x-frame-options: ALLOW-FROM *.twilio.com
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 953 — Bankers Trust Company (final URL: https://www.bankerstrust.com/, status 403)
-
-```http
 Date: Mon, 16 Nov 2026 18:39:15 GMT
-Content-Type: text/html; charset=UTF-8
-CF-RAY: a5b89e0bece2f069-DFW
-Server: cloudflare
-Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
-Expires: Thu, 01 Jan 1970 00:00:01 GMT
-Referrer-Policy: same-origin
-X-Frame-Options: SAMEORIGIN
-set-cookie: <elided>
-Content-Encoding: br
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+strict-transport-security: (absent)
+content-security-policy: (absent)
+x-content-type-options: (absent)
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: (absent)
+set-cookie: 1 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 1281 — Washington Trust Bank (final URL: https://www.watrust.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:07 GMT
-Content-Type: text/html; charset=utf-8
-CF-RAY: a5b89c5cdca635ac-ORD
-Content-Encoding: gzip
-Server: cloudflare
-vary: Accept-Encoding
-expires: Mon, 16 Nov 2026 18:38:07 GMT
-Set-Cookie: <elided>
-Cache-Control: public, max-age=0
-x-frame-options: SAMEORIGIN
-x-xss-protection: 1; mode=block
-x-ad-insert-result: no ads - index
-x-content-type-options: nosniff
 strict-transport-security: max-age=31536000
-x-varnish-ttl: 0.000
-x-varnish: 133222790
-Age: 0
-x-varnish-hitmiss: MISS
-x-varnish-count: 0
-via: varnish
-cf-cache-status: DYNAMIC
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+content-security-policy: (absent)
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 1 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 11578 — Burke & Herbert Bank & Trust Company (final URL: https://www.burkeandherbertbank.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:07 GMT
-Server: Apache
-Link: <https://www.burkeandherbertbank.com/wp-json/>; rel="https://api.w.org/", <https://www.burkeandherbertbank.com/wp-json/wp/v2/pages/264>; rel="alternate"; title="JSON"; type="application/json", <https://www.burkeandherbertbank.com/>; rel=shortlink
-Content-Type: text/html; charset=UTF-8
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+strict-transport-security: (absent)
+content-security-policy: (absent)
+x-content-type-options: (absent)
+x-frame-options: (absent)
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 12854 — Centier Bank (final URL: https://www.centier.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:11 GMT
-Content-Type: text/html; charset=utf-8
-alt-svc: h3=":443"; ma=86400
-Content-Encoding: gzip
-CF-Ray: a5b89c78fbee5ea4-LAX
-CF-Cache-Status: HIT
-Age: 34071
-Cache-Control: public, max-age=0, s-maxage=43200
-Last-Modified: Mon, 16 Nov 2026 09:10:20 GMT
-Server: cloudflare
-Strict-Transport-Security: max-age=31536000; preload
-Content-Security-Policy: default-src *.dynamics.com *.centier.com *.luckyorange.com *.myfonts.net *.googleapis.com *.vimeocdn.com *.delivera.com play.vidyard.com *.google.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google-analytics.com google.com *.youtube.com *.googletagmanager.com *.signalintent.com *.jsdelivr.net *.clarity.ms *.stackadapt.com 'self'; script-src *.dm00.com *.cloudfront.com *.jsdelivr.net https://www.youtube.com/iframe_api https://dec.azureedge.net/ https://www.bugherd.com munchkin.marketo.net *.eloqua.com js.hs-scripts.com js.hs-analytics.net *.en25.com cdn.ampproject.org *.msecnd.net *.cludo.com cdn.cookielaw.org *.signalintent.com cdn.jsdelivr.net integration.delivra.com mktdplp102cdn.azureedge.net js.adsrvr.org wsmcdn.audioeye.com tag.simpli.fi cdn.segment.com *.typeform.com *.google.com *.googletagmanager.com *.jquery.com *.ellieservices.com *.doubleclick.net *.vimeocdn.com *.ensighten.com *.audioeye.com *.simpli.fi *.clarity.ms *.luckyorange.com s4desktop.com bat.bing.com insight.adsrvr.org *.googleadservices.com https://refer.centier.com/core.js https://origin.xtlo.net googlesyndication.com *.ssl.cf5.rackcdn.com *.gonorth.io *.callrail.com *.fontawesome.com *.cloudfront.net play.vidyard.com cdn.mantl.com https://dev.visualwebsiteoptimizer.com 'self' 'unsafe-inline' 'unsafe-eval' maps.googleapis.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google-analytics.com google.com *.youtube.com *.centier.com *.googleapis.com *.stackadapt.com *.pti.com *.audioeye-services.com https://capi-automation.s3.us-east-2.amazonaws.com *.cloudflare.com https://cdn.insight.sitefinity.com https://player.vimeo.com/api/player.js; style-src 'unsafe-inline' *.jsdelivr.net *.centier.com cdn.jsdelivr.net embed.signalintent.com *.cludo.com *.google.com *.typeform.com *.audioeye.com s4desktop.com platform.twitter.com *.luckyorange.com *.myfonts.net *.googletagmanager.com https://origin.xtlo.net use.fontawesome.com *.play.vidyard.com https://dev.visualwebsiteoptimizer.com fonts.googleapis.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com google.com *.youtube.com *.signalintent.com *.clarity.ms *.stackadapt.com *.pti.com *.cloudfront.net *.audioeye-services.com https://cdn.insight.sitefinity.com 'self'; img-src data: *.dm00.com *.cloudfront.com *.jsdelivr.net *.centier.com *.azureedge.net https://*.insight.sitefinity.com https://*.dec.sitefinity.com *.eloqua.com track.hubspot.com *.cludo.com insight-event.brandcdn.com *.simpli.fi *.google.com *.googleadservices.com *.doubleclick.net *.3lift.com *.tremorhub.com *.tapad.com fei.pro-market.net *.agkn.com *.intentig.com *.pubmatic.com *.stickyadstv.com *.exelator.com *.yahoo.com *.facebook.net *.intentiq.com *.bfmio.com *.bluekai.com *.crwdcntrl.net *.lijit.com *.rlcdn.com *.spotxchange.com *.adnxs.com *.rubiconproject.com *.openx.net pippio.com *.luckyorange.com *.dynamics.com bat.bing.com insight.adsrvr.org https://origin.xtlo.net *.google-analytics.com play.vidyard.com cdn.vidyard.com c.clarity.ms https://dev.visualwebsiteoptimizer.com maps.gstatic.com *.cookielaw.org *.bing.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.googleapis.com *.facebook.com *.instagram.com google.com *.youtube.com *.googletagmanager.com *.signalintent.com *.clarity.ms *.stackadapt.com *.pti.com *.printable.com https://cdn.insight.sitefinity.com 'self'; font-src 'self' *.jsdelivr.net *.centier.com embed.signalintent.com *.gstatic.com *.audioeye.com *.googleapis.com https://origin.xtlo.net use.fontawesome.com *.amazonaws.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.ytimg.com *.xtlo.net *.optimalblue.com data: *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google.com google.com *.youtube.com *.googletagmanager.com *.signalintent.com *.clarity.ms *.stackadapt.com *.pti.com *.office.net *.audioeye-services.com *.outgrow.co https://example.com/MaterialIcons-Regular.ttf https://example.com/MaterialIcons-Regular.woff2 https://example.com/MaterialIcons-Regular.woff; frame-src *.jsdelivr.net *.centier.com *.matterport.com *.google.com *.vimeo.com *.youtube.com *.typeform.com *.office365.com s4desktop.com youtu.be *.coconutcalendar.com *.audioeye.com *.adsrvr.org *.dynamics.com td.doubleclick.net https://www.facebook.com forms.office.com centier-aut.sitefinity.cloud play.vidyard.com *.googletagmanager.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google-analytics.com google.com *.signalintent.com *.clarity.ms *.stackadapt.com *.outgrow.co; connect-src *.dm00.com *.cloudfront.com *.jsdelivr.net *.centier.com *.mktoresp.com *.visualstudio.com *.cludo.com cdn.cookielaw.org *.onetrust.com calc-backend-prod.herokuapp.com api.segment.io cdn.segment.com *.articulate.com *.clarity.ms *.audioeye.com *.delivra.com *.doubleclick.net *.visitors.live wss://in.visitors.live/socket.io ws: *.luckyorange.com *.googleapis.com https://www.facebook.com *.dynamics.com *.googlesyndication.com *.googletagmanager.com analytics.google.com *.bing.com *.ssl.cf5.rackcdn.com *.gonorth.io *.callrail.com *.fontawesome.com *.cloudfront.net *.google.com 'self' *.visualwebsiteoptimizer.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google-analytics.com google.com *.youtube.com *.signalintent.com https://ipapi.co *.stackadapt.com *.office.net *.audioeye-services.com https://insights.array.io https://*.insight.sitefinity.com https://*.dec.sitefinity.com; media-src *.jsdelivr.net *.centier.com *.azureedge.net play.vidyard.com *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google.com google.com *.youtube.com *.googletagmanager.com *.signalintent.com *.clarity.ms *.stackadapt.com 'self'; child-src *.jsdelivr.net *.centier.com centier-stg.sitefinity.cloud centier-aut.sitefinity.cloud centier.sitefinity.cloud *.googleapis.com https://www.google.com blob: *.azure.com *.outgrow.us *.filestackcontent.com *.cloudfont.net *.adsrvr.org *.sitefinity.cloud *.gstatic.com *.ytimg.com *.xtlo.net *.optimalblue.com *.console.glassboxsaas.com *.glassboxdigital.io *.gbqofs.com *.report.gbss.io *.gbqofs.io *.gbss.io *.facebook.net *.facebook.com *.instagram.com *.google.com *.google-analytics.com google.com *.youtube.com *.googletagmanager.com *.signalintent.com *.clarity.ms *.stackadapt.com
-Request-Context: appId=cid-v1:9b8ce34f-58df-49fc-81dd-ecaea6e7b60c
-Vary: accept-encoding
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+strict-transport-security: max-age=31536000; preload
+content-security-policy: default-src *.dynamics.com *.centier.com *.luckyorange.com *.myfonts.net *.googleapis.com *.vimeocdn ... [truncated]
+x-content-type-options: (absent)
+x-frame-options: (absent)
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 19629 — International Bank of Commerce (final URL: https://www.ibc.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:16 GMT
-Content-Type: text/html; charset=utf-8
-CF-RAY: a5b89c9678ede65f-DEN
-Server: cloudflare
-Cache-Control: public
-Content-Encoding: gzip
-etag: 11162026170002
-vary: User-Agent,Accept-Encoding
-x-trace-id: f5662882-a01b-45c0-bb90-e100a85de41e
-x-frame-options: SAMEORIGIN
-Age: 5891
-ms-content-tags: 13456-cg-600686,13456-cg-600690,13456-cg-600691,13456-cg-600692,13456-cg-600703,13456-cg-600707,13456-cg-600713,13456-cg-600738,13456-cg-600740,13456-cg-600846,13456-cg-600928,13456-cg-601066,13456-cg-601749,13456-cg-602051,13456-cg-602991,13456-cms-content,13456-Events,13456-f-451428,13456-f-451429,13456-f-451438,13456-f-451440,13456-f-451441,13456-f-451624,13456-f-451633,13456-f-451635,13456-f-451636,13456-f-451637,13456-f-451638,13456-f-451639,13456-f-451640,13456-f-451673,13456-f-451675,13456-f-451676,13456-f-451958,13456-f-451973,13456-f-452045,13456-f-452047,13456-f-453066,13456-f-453666,13456-f-453747,13456-faqs,13456-m-2815,13456-m-2828,13456-m-2829,13456-m-2830,13456-m-3010,13456-m-3011,13456-m-3014,13456-m-3024,13456-m-3025,13456-m-3026,13456-m-3027,13456-m-3028,13456-m-3029,13456-m-3030,13456-m-3031,13456-m-3032,13456-m-3033,13456-m-3034,13456-m-3104,13456-m-3105,13456-m-3106,13456-m-3400,13456-m-3508,13456-m-3509,13456-m-5193,13456-m-5224,13456-p-275145,13456-pt-410452,13456-socialfeed,13456-sociallinks
-x-xss-protection: 1
-x-content-type-options: nosniff
 strict-transport-security: max-age=31536000; includeSubDomains
-request-context: appId=cid-v1:2222bae7-6b65-488b-a7a8-8f50b5e55838
-access-control-expose-headers: Request-Context
-cf-cache-status: HIT
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+content-security-policy: (absent)
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ### CERT 34697 — WEX Bank (final URL: https://www.wexinc.com/, status 200)
-
-```http
 Date: Mon, 16 Nov 2026 18:38:06 GMT
-Content-Type: text/html; charset=UTF-8
-X-Iinfo: 6-646076-646077 SNNN RT(1794854285564 1203) q(0 0 0 -1) r(1 1) U19
-X-CDN: Imperva
-Vary: Accept-Encoding
-Server: Pagely-ARES/1.23.0
-X-Gateway-Request-Id: db8361deb997b04b907e9e1015e40126
-Link: <https://www.wexinc.com/>; rel=shortlink
-Strict-Transport-Security: max-age=31536000
-X-Gateway-Cache-Key: 1794848654.193|standard|https|www.wexinc.com|||/|
-X-Gateway-Cache-Status: HIT
-X-Gateway-Skip-Cache: 0
-Content-Encoding: gzip
-Transfer-Encoding: chunked
-```
-
-security.txt: HTTP 404 (no Contact line served).
+strict-transport-security: max-age=31536000
+content-security-policy: (absent)
+x-content-type-options: (absent)
+x-frame-options: (absent)
+referrer-policy: (absent)
+permissions-policy: (absent)
+set-cookie: 0 cookies set, 0 without Secure, 0 without HttpOnly (values elided)
+security.txt: HTTP 404, no Contact line served
 
 ## Notes and limits
 
