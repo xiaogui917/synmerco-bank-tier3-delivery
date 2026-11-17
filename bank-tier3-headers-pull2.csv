@@ -2,7 +2,7 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 11578,Burke & Herbert Bank & Trust Company,www.burkeandherbertbank.com,https://www.burkeandherbertbank.com/,200,yes,,no,absent,no,none,,,0,0,0,,
 34697,WEX Bank,www.wexinc.com,https://www.wexinc.com/,200,yes,31536000,no,absent,no,none,,,0,0,0,,
 1281,Washington Trust Bank,www.watrust.com,https://www.watrust.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
-59108,Charles Schwab Trust Bank,,,no WEBADDR,no,,no,absent,no,none,,,0,0,0,no response,no response
+59108,Charles Schwab Trust Bank,,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
 12854,Centier Bank,www.centier.com,https://www.centier.com/,200,yes,31536000,yes,present,no,none,,,0,0,0,,
 14531,Amarillo National Bank,www.anb.com,https://www.anb.com/,200,yes,31536000,yes,present,yes,SAMEORIGIN,strict-origin-when-cross-origin,"geolocation=(self), hid=(self)",0,0,0,,
 258,Stock Yards Bank & Trust Company,www.syb.com,https://www.syb.com/,403,no,,no,absent,no,none,,,0,0,0,,
@@ -24,14 +24,14 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 27589,"Lake Forest Bank & Trust Company, National Association",www.lakeforestbank.com,https://www.lakeforestbank.com/,200,yes,31557600,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 13421,Union Bank and Trust Company,www.ubt.com,https://www.ubt.com/,200,yes,31536000,yes,absent,yes,ALLOW-FROM https://www.ubt.com,,,0,0,0,,
 26312,"First American Trust, FSB",www.firstamtrust.com,https://www.firstamtrust.com/,200,yes,63072000,yes,absent,yes,DENY,,,1,0,0,,
-35444,"The Bancorp Bank, National Association",www.thebancorp.com,https://www.thebancorp.com/,200,no,31536000,no,present,yes,'self' https://*.thebancorp.com https://thebancorp.sharepoint.com,,,1,0,0,,
+35444,"The Bancorp Bank, National Association",www.thebancorp.com,https://www.thebancorp.com/,200,no response,31536000,no,present,yes,'self' https://*.thebancorp.com https://thebancorp.sharepoint.com,,,1,0,0,,
 10634,Pinnacle Bank,www.pinnbank.com,https://www.pinnbank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,geolocation=(self),0,0,0,,
 3705,"First Mid Bank & Trust, National Association",www.firstmid.com,https://www.firstmid.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
-34519,Merrick Bank,http://www.merrickbank.com,https://www.merrickbank.com/,200,no,31536000,no,absent,yes,none,,,0,0,0,,
+34519,Merrick Bank,http://www.merrickbank.com,https://www.merrickbank.com/,200,no response,31536000,no,absent,yes,none,,,0,0,0,,
 32526,"American Savings Bank, National Association",www.asbhawaii.com,https://www.asbhawaii.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,0,0,0,,
 23220,Woodforest National Bank,www.woodforest.com,https://www.woodforest.com/,200,yes,31536000,yes,present,yes,'self',strict-origin-when-cross-origin,"camera=(), microphone=(), payment=()",0,0,0,,
 58228,b1BANK,www.b1bank.com,https://www.b1bank.com/,403,no,,no,absent,no,none,,,0,0,0,,
-34699,Metropolitan Commercial Bank,www.mcbankny.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+34699,Metropolitan Commercial Bank,www.mcbankny.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 23296,Salem Five Cents Savings Bank,http://www.salemfive.com,https://www.salemfive.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,no-referrer,,0,0,0,,
 609,Tompkins Bank & Trust,www.tompkinsbank.com,https://www.tompkinsbank.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 27389,Wells Fargo National Bank West,www.wellsfargo.com,https://www.wellsfargo.com/,200,yes,31536000,no,present,yes,'self' *.wellsfargo.com,,,1,0,0,,
@@ -49,28 +49,28 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 11035,Peapack Private Bank & Trust,www.peapackprivate.com,https://www.peapackprivate.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 24170,Hanmi Bank,www.hanmi.com,https://www.hanmi.com/,200,yes,300,no,absent,no,none,,"private-state-token-redemption=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com""), private-state-token-issuance=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com"")",0,0,0,,
 953,Bankers Trust Company,www.bankerstrust.com,https://www.bankerstrust.com/,403,no,,no,absent,no,SAMEORIGIN,same-origin,,1,0,0,,
-16191,Stockman Bank of Montana,www.stockmanbank.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
-18408,Bangor Savings Bank,www.bangor.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
-33539,Preferred Bank,www.preferredbank.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
-25858,Equity Bank,www.equitybank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-28765,Kearny Bank,www.kearnybank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-24156,Ocean Bank,www.oceanbank.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
+16191,Stockman Bank of Montana,www.stockmanbank.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+18408,Bangor Savings Bank,www.bangor.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+33539,Preferred Bank,www.preferredbank.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+25858,Equity Bank,www.equitybank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+28765,Kearny Bank,www.kearnybank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+24156,Ocean Bank,www.oceanbank.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 16980,Bank of Colorado,www.bankofcolorado.com,https://www.bankofcolorado.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,geolocation=(self),0,0,0,,
-16026,Ridgewood Savings Bank,www.ridgewoodbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-34953,Northpointe Bank,www.northpointe.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-17308,Central Pacific Bank,WWW.CPB.BANK,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+16026,Ridgewood Savings Bank,www.ridgewoodbank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+34953,Northpointe Bank,www.northpointe.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+17308,Central Pacific Bank,WWW.CPB.BANK,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 26483,Needham Bank,www.needhambank.com,https://www.needhambank.com/,403,no,,no,present,yes,SAMEORIGIN,origin-when-cross-origin,,0,0,0,,
-33648,Bank of India,,,no WEBADDR,no,,no,absent,no,none,,,0,0,0,no response,no response
-23498,"TBK BANK, SSB",www.tbkbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-33661,"Mizrahi Tefahot Bank, Ltd.",,,no WEBADDR,no,,no,absent,no,none,,,0,0,0,no response,no response
+33648,Bank of India,,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
+23498,"TBK BANK, SSB",www.tbkbank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+33661,"Mizrahi Tefahot Bank, Ltd.",,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR,no WEBADDR
 30776,"Pathward, National Association",http://www.pathward.com,https://www.pathward.com/,200,yes,31536000,yes,present,yes,'self' pathward.com *.pathward.com,strict-origin-when-cross-origin,"accelerometer=(), battery=(), bluetooth=(), camera=(), display-capture=(), gamepad=(),gyroscope=(), magnetometer=(), microphone=(), midi=(),picture-in-picture=(),serial=(),speaker-selection=(),usb=(),xr-spatial-tracking=()",0,0,0,,
 13102,Lake City Bank,www.lakecitybank.com,https://www.lakecitybank.com/,200,yes,31536000,yes,present,yes,SAMEORIGIN,,,0,0,0,,
 6540,The Farmers National Bank of Canfield,www.farmersbankgroup.com,https://farmersbankgroup.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,,,0,0,0,,
-20296,Johnson Bank,www.johnsonfinancialgroup.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
-23627,Republic Bank & Trust Company,www.republicbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-9889,Mid Penn Bank,www.midpennbank.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+20296,Johnson Bank,www.johnsonfinancialgroup.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+23627,Republic Bank & Trust Company,www.republicbank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+9889,Mid Penn Bank,www.midpennbank.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
 17870,Cambridge Savings Bank,www.cambridgesavings.com,https://www.cambridgesavings.com/,200,yes,2592000,no,present,yes,https://fiolbdomain.com https://www.csbwebonline.com https://psa.stg1.digitalinsight.com https://psa.digitalinsight.com,strict-origin-when-cross-origin,"camera=(), geolocation=(), microphone=()",0,0,0,,
-2720,"Community Trust Bank, Inc.",www.ctbi.com,,no response,yes,,no,absent,no,none,,,0,0,0,no response,no response
-4255,The Camden National Bank,www.camdennational.bank,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-3603,Old Second National Bank,www.oldsecond.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
-17438,First National Bank of America,www.fnba.com,,no response,no,,no,absent,no,none,,,0,0,0,no response,no response
+2720,"Community Trust Bank, Inc.",www.ctbi.com,no response,no response,yes,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+4255,The Camden National Bank,www.camdennational.bank,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+3603,Old Second National Bank,www.oldsecond.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response
+17438,First National Bank of America,www.fnba.com,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response,no response

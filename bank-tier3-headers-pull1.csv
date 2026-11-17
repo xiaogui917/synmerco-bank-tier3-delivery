@@ -49,12 +49,12 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 11035,Peapack Private Bank & Trust,www.peapackprivate.com,https://www.peapackprivate.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,no response,no response
 24170,Hanmi Bank,www.hanmi.com,https://www.hanmi.com/,200,yes,300,no,absent,no,none,,"private-state-token-redemption=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com""), private-state-token-issuance=(self ""https://www.google.com"" ""https://www.gstatic.com"" ""https://recaptcha.net"" ""https://challenges.cloudflare.com"" ""https://hcaptcha.com"")",0,0,0,,
 953,Bankers Trust Company,www.bankerstrust.com,https://www.bankerstrust.com/,403,no,,no,absent,no,SAMEORIGIN,same-origin,,1,0,0,no response,no response
-16191,Stockman Bank of Montana,www.stockmanbank.com,https://www.stockmanbank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,,1,0,0,no response,no response
-18408,Bangor Savings Bank,www.bangor.com,https://www.bangor.com/,200,yes,31536000,no,present,no,https://admin.bangor.com/ https://bangor.com/ https://www.admin.bangor.com/ https://www.bangor.com/ https://*.bangor.com/,,,1,0,0,no response,no response
-33539,Preferred Bank,www.preferredbank.com,https://www.preferredbank.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,no response,no response
+16191,Stockman Bank of Montana,www.stockmanbank.com,https://www.stockmanbank.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,,1,0,0,,
+18408,Bangor Savings Bank,www.bangor.com,https://www.bangor.com/,200,yes,31536000,no,present,no,https://admin.bangor.com/ https://bangor.com/ https://www.admin.bangor.com/ https://www.bangor.com/ https://*.bangor.com/,,,1,0,0,,
+33539,Preferred Bank,www.preferredbank.com,https://www.preferredbank.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 25858,Equity Bank,www.equitybank.com,https://www.equitybank.com/,403,yes,,no,absent,no,none,,,0,0,0,,
 28765,Kearny Bank,www.kearnybank.com,https://www.kearnybank.com/,403,yes,,no,absent,no,none,,,0,0,0,,
-24156,Ocean Bank,www.oceanbank.com,https://www.oceanbank.com/,200,yes,31557600,no,absent,yes,SAMEORIGIN,,,1,0,0,no response,no response
+24156,Ocean Bank,www.oceanbank.com,https://www.oceanbank.com/,200,yes,31557600,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 16980,Bank of Colorado,www.bankofcolorado.com,https://www.bankofcolorado.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,no-referrer-when-downgrade,geolocation=(self),0,0,0,,
 16026,Ridgewood Savings Bank,www.ridgewoodbank.com,https://www.ridgewoodbank.com/,403,yes,,no,absent,no,none,,,0,0,0,,
 34953,Northpointe Bank,www.northpointe.com,https://www.northpointe.com/,403,yes,,no,absent,no,none,,,0,0,0,,
@@ -66,11 +66,11 @@ CERT,NAME,WEBADDR,final url,status,https redirect,hsts max-age,hsts preload,csp,
 30776,"Pathward, National Association",http://www.pathward.com,https://www.pathward.com/,200,yes,31536000,yes,present,yes,'self' pathward.com *.pathward.com,strict-origin-when-cross-origin,"accelerometer=(), battery=(), bluetooth=(), camera=(), display-capture=(), gamepad=(),gyroscope=(), magnetometer=(), microphone=(), midi=(),picture-in-picture=(),serial=(),speaker-selection=(),usb=(),xr-spatial-tracking=()",0,0,0,,
 13102,Lake City Bank,www.lakecitybank.com,https://www.lakecitybank.com/,200,yes,31536000,yes,present,yes,SAMEORIGIN,,,0,0,0,,
 6540,The Farmers National Bank of Canfield,www.farmersbankgroup.com,https://farmersbankgroup.com/,200,yes,31536000,no,present,yes,SAMEORIGIN,,,0,0,0,,
-20296,Johnson Bank,www.johnsonfinancialgroup.com,https://www.johnsonfinancialgroup.com/,200,yes,,no,present,no,none,,,1,0,0,no response,no response
+20296,Johnson Bank,www.johnsonfinancialgroup.com,https://www.johnsonfinancialgroup.com/,200,yes,,no,present,no,none,,,1,0,0,,
 23627,Republic Bank & Trust Company,www.republicbank.com,https://www.republicbank.com/,403,yes,,no,absent,no,none,,,0,0,0,,
 9889,Mid Penn Bank,www.midpennbank.com,https://www.midpennbank.com/,403,yes,,no,absent,no,none,,,0,0,0,,
 17870,Cambridge Savings Bank,www.cambridgesavings.com,https://www.cambridgesavings.com/,200,yes,2592000,no,present,yes,https://fiolbdomain.com https://www.csbwebonline.com https://psa.stg1.digitalinsight.com https://psa.digitalinsight.com,strict-origin-when-cross-origin,"camera=(), geolocation=(), microphone=()",0,0,0,,
-2720,"Community Trust Bank, Inc.",www.ctbi.com,https://www.ctbi.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,no response,no response
+2720,"Community Trust Bank, Inc.",www.ctbi.com,https://www.ctbi.com/,200,yes,31536000,no,absent,yes,SAMEORIGIN,,,1,0,0,,
 4255,The Camden National Bank,www.camdennational.bank,https://www.camdennational.bank/,403,yes,,no,absent,no,none,,,0,0,0,,
 3603,Old Second National Bank,www.oldsecond.com,https://www.oldsecond.com/,403,yes,,no,absent,no,none,,,0,0,0,,
 17438,First National Bank of America,www.fnba.com,https://www.fnba.com/,403,yes,,no,absent,no,none,,,0,0,0,,
